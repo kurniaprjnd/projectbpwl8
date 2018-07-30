@@ -1,40 +1,4 @@
 <!doctype html>
-<?php
-//koneksi ke database
-$conn = new mysqli("localhost", "root", "", "grafik");
-if ($conn->connect_errno) {
-    echo die("Failed to connect to MySQL: " . $conn->connect_error);
-}
- 
-$rows = array();
-$table = array();
-$table['cols'] = array(
-	//membuat label untuk nama nya, tipe string
-	array('label' => 'Genre', 'type' => 'string'),
-	//membuat label untuk jumlah siswa, tipe harus number untuk kalkulasi persentasenya
-	array('label' => 'Jumlah peminat', 'type' => 'number')
-);
- 
-//melakukan query ke database select
-$sql = $conn->query("SELECT * FROM genree");
-//perulangan untuk menampilkan data dari database
-while($data = $sql->fetch_assoc()){
-	//membuat array
-	$temp = array();
-	//memasukkan data pertama yaitu nama kelasnya
-	$temp[] = array('v' => (string)$data['genre']);
-	//memasukkan data kedua yaitu jumlah siswanya
-	$temp[] = array('v' => (int)$data['peminat']);
-	//memasukkan data diatas ke dalam array $rows
-	$rows[] = array('c' => $temp);
-}
- 
-//memasukkan array $rows dalam variabel $table
-$table['rows'] = $rows;
-//mengeluarkan data dengan json_encode. silahkan di echo kalau ingin menampilkan data nya
-$jsonTable = json_encode($table);
- 
-?>
 <html>
 
 <head>
@@ -48,8 +12,6 @@ $jsonTable = json_encode($table);
 	<link href='https://fonts.googleapis.com/css?family=Montserrat:400,700' rel='stylesheet' type='text/css'>
 	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400,300,800italic,700italic,600italic,400italic,300italic,800,700,600' rel='stylesheet' type='text/css'>
 <link href='https://fonts.googleapis.com/css?family=Permanent+Marker' rel='stylesheet' type='text/css'>
-<link href='https://fonts.googleapis.com/css?family=Righteous' rel='stylesheet' type='text/css'>
-
 	<link href="css/bootstrap.css" rel="stylesheet" type="text/css">
 	<link href="css/style.css" rel="stylesheet" type="text/css">
 	<link href="css/font-awesome.css" rel="stylesheet" type="text/css">
@@ -66,33 +28,6 @@ $jsonTable = json_encode($table);
 	<script type="text/javascript" src="js/classie.js"></script>
 	<script type="text/javascript" src="js/magnific-popup.js"></script>
 	<script src="contactform/contactform.js"></script>
-
-	<!-- =======================================================
-    Theme Name: Knight
-    Theme URL: https://bootstrapmade.com/knight-free-bootstrap-theme/
-    Author: BootstrapMade
-    Author URL: https://bootstrapmade.com
-	======================================================= -->
-				<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-    <script type="text/javascript">
- 
-	google.charts.load('current', {'packages':['corechart']});
-	google.charts.setOnLoadCallback(drawChart);
- 
-	function drawChart() {
- 
-		// membuat data chart dari json yang sudah ada di atas
-		var data = new google.visualization.DataTable(<?php echo $jsonTable; ?>);
- 
-		// Set options, bisa anda rubah
-		var options = {'title':'DATA TABEL GENRE MUSIK POPULER',
-					   'width':500,
-					   'height':400};
- 
-		var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-		chart.draw(data, options);
-	}
-    </script>
 </head>
 
 <body>
@@ -106,7 +41,7 @@ $jsonTable = json_encode($table);
 			<ul class="we-create animated fadeInUp delay-1s">
 				<li>Music is the language of the spirit.It opens the secret of life bringing peace, abolishing strife.</li>
 			</ul>
-			<a class="link animated fadeInUp delay-1s servicelink" href="#service">Get Started</a>
+			<a class="link animated fadeInUp delay-1s servicelink" href="proses/login.php">Get Started</a>
 		</div>
 	</header>
 	<!--header-end-->
@@ -134,11 +69,12 @@ $jsonTable = json_encode($table);
 		<!--main-section-start-->
 		<div class="container">
 			<h2>Jenis Jenis Alat Musik</h2>
+			<h6>We offer exceptional service with complimentary hugs.</h6>
 			<div class="row">
 				<div class="col-lg-4 col-sm-6 wow fadeInLeft delay-05s">
 					<div class="service-list">
 						<div class="service-list-col1">
-							<img src="img/aero.png" ></img>
+							<img src="img/aero.png"></img>
 						</div>
 						<div class="service-list-col2">
 							<h3>Aerophone</h3>
@@ -219,12 +155,12 @@ $jsonTable = json_encode($table);
 							<p>Musik pop adalah salah satu jenis seni musik populer yang mencerminkan kemodernan.Selain modern, musi jenis pop juga lebih easy listening bagi segala kalangan. Di Indonesia jenis musik yang satu ini mendominasi dan tidak lekang oleh waktu. </p>
 						</div>
 					</div>
+					<a class="Learn-More" href="#">Learn More</a>
 				</div>
 			</div>
-			<!--Div yang akan menampilkan chart-->
-    <div id="chart_div"></div>
 		</div>
 	</section>
+	
 	<!--main-section alabaster-end-->
 
 
@@ -237,10 +173,10 @@ $jsonTable = json_encode($table);
 			<div class="portfolioFilter">
 				<ul class="Portfolio-nav wow fadeIn delay-02s">
 					<li><a href="#" data-filter="*" class="current">All</a></li>
-					<li><a href="#" data-filter=".branding">Branding</a></li>
-					<li><a href="#" data-filter=".webdesign">Web design</a></li>
-					<li><a href="#" data-filter=".printdesign">Print design</a></li>
-					<li><a href="#" data-filter=".photography">Photography</a></li>
+					<li><a href="#" data-filter=".branding">Music Genres</a></li>
+					<li><a href="#" data-filter=".webdesign">Musicians</a></li>
+					<li><a href="#" data-filter=".printdesign">Composer</a></li>
+					<li><a href="#" data-filter=".photography">Concert</a></li>
 				</ul>
 			</div>
 
@@ -287,14 +223,14 @@ $jsonTable = json_encode($table);
 			<b class="quote-right wow fadeInDown delay-03"><i class="fa fa-quote-right"></i></b>
 			<div class="row">
 				<div class="col-lg-12">
-					<p class="client-part-haead wow fadeInDown delay-05">It was a pleasure to work with the guys at Knight Studio. They made sure we were well fed and drunk all the time!</p>
+					<p class="client-part-haead wow fadeInDown delay-05">One good things about music when it hits you, you feel no pain ! </p>
 				</div>
 			</div>
 			<ul class="client wow fadeIn delay-05s">
 				<li><a href="#">
-            	<img src="img/client-pic1.jpg" alt="">
-                <h3>James Bond</h3>
-                <span>License To Drink Inc.</span>
+            	<img src="img/bobmarley.jpg" alt="">
+                <h3>Bob Marley</h3>
+                <span>License To Makes Music Inc.</span>
             </a></li>
 			</ul>
 		</div>
@@ -316,8 +252,8 @@ $jsonTable = json_encode($table);
 	<section class="main-section team" id="team">
 		<!--main-section team-start-->
 		<div class="container">
-			<h2>our team</h2>
-			<h6>Take a closer look into our amazing team. We won’t bite.</h6>
+			<h2>Team</h2>
+			<h6>Mari mengenal lebih dekat team kami</h6>
 			<div class="team-leader-block clearfix">
 				<div class="team-leader-box">
 					<div class="team-leader wow fadeInDown delay-03s">
@@ -331,8 +267,8 @@ $jsonTable = json_encode($table);
 						</ul>
 					</div>
 					<h3 class="wow fadeInDown delay-03s">Cristin</h3>
-					<span class="wow fadeInDown delay-03s">Chief Executive Officer</span>
-					<p class="wow fadeInDown delay-03s"></div>
+					<span class="wow fadeInDown delay-03s">1755301019</span>
+					<p class="wow fadeInDown delay-03s">POLITEKNIK CALTEX RIAU</div>
 				<div class="team-leader-box">
 					<div class="team-leader  wow fadeInDown delay-06s">
 						<div class="team-leader-shadow"><a href="#"></a></div>
@@ -345,9 +281,8 @@ $jsonTable = json_encode($table);
 						</ul>
 					</div>
 					<h3 class="wow fadeInDown delay-06s">Kurnia Prijiandi</h3>
-					<span class="wow fadeInDown delay-06s">Product Manager</span>
-					<p class="wow fadeInDown delay-06s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat sollicitudin cursus. Dolor sit amet, consectetur adipiscing elit proin consequat.</p>
-				</div>
+					<span class="wow fadeInDown delay-06s">17553010</span>
+					<p class="wow fadeInDown delay-06s">POLITEKNIK CALTEX RIAU</div>
 				<div class="team-leader-box">
 					<div class="team-leader wow fadeInDown delay-09s">
 						<div class="team-leader-shadow"><a href="#"></a></div>
@@ -359,10 +294,9 @@ $jsonTable = json_encode($table);
 							<li><a href="#" class="fa fa-google-plus"></a></li>
 						</ul>
 					</div>
-					<h3 class="wow fadeInDown delay-09s">Rahmita Ramadhanty</h3>
-					<span class="wow fadeInDown delay-09s">Accountant</span>
-					<p class="wow fadeInDown delay-09s">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin consequat sollicitudin cursus. Dolor sit amet, consectetur adipiscing elit proin consequat.</p>
-				</div>
+					<h3 class="wow fadeInDown delay-09s">Ramita Ramadhanty</h3>
+					<span class="wow fadeInDown delay-09s">17553010</span>
+					<p class="wow fadeInDown delay-09s">POLITEKNIK CALTEX RIAU</div>
 			</div>
 		</div>
 	</section>
@@ -373,7 +307,8 @@ $jsonTable = json_encode($table);
 	<section class="business-talking">
 		<!--business-talking-start-->
 		<div class="container">
-			<h2>Let’s Talk Business.</h2>
+			<h2>Let’s Talk about Music.</h2>
+
 		</div>
 	</section>
 	<!--business-talking-end-->
