@@ -134,7 +134,6 @@ $jsonTable = json_encode($table);
 		<!--main-section-start-->
 		<div class="container">
 			<h2>Jenis Jenis Alat Musik</h2>
-			<h6>We offer exceptional service with complimentary hugs.</h6>
 			<div class="row">
 				<div class="col-lg-4 col-sm-6 wow fadeInLeft delay-05s">
 					<div class="service-list">
