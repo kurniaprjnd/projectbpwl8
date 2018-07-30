@@ -98,9 +98,8 @@ p{
 
 .header{
 	text-align:center;
-	background:url(../img/bg.png) fixed;
-	background-repeat: no-repeat;	
-	padding:280px 0;
+	background:url(../img/bg.png) firebrick;	
+	padding: 50px 0;
 }
 .logo{
 	width:130px;
@@ -112,7 +111,7 @@ p{
 	font-weight:400;
 	letter-spacing: -1px;
 	margin:0 0 22px 0 ;
-	color:#fff;
+	color:#000000;
 }
 
 .we-create{
@@ -228,7 +227,7 @@ color: #fff;
 	margin-bottom:40px;
 }
 .service-list-col1{
-	float:left;
+	float:initial;
 	width:60px;
 }
 .service-list-col1 i{
